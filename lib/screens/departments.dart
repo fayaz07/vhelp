@@ -2,21 +2,26 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:folding_widget/folding_widget.dart';
+import 'package:vhelp/folding_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 double _height, _width;
+
+var _small = TextStyle(fontSize: 14.0,color: Colors.white);
+var _large = TextStyle(fontSize: 20.0,color: Colors.white,fontWeight: FontWeight.w800);
+
 
 var _departments = [
   DepartmentsDataModel(
       deptName: 'CSE',
       type: 'Branch',
       facultyPhones:
-          '[{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"}]'),
+        '[{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"}]'),
   DepartmentsDataModel(
       deptName: 'CSE',
       type: 'Branch',
       facultyPhones:
-      '[{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"}]')
+        '[{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"}]')
 ];
 
 class Departments extends StatefulWidget {
@@ -26,10 +31,7 @@ class Departments extends StatefulWidget {
   }
 }
 
-var colors = [
-  Colors.redAccent,
-  Colors.blueAccent,
-];
+var colors = Colors.accents;
 
 class _DepartmentsState extends State<Departments> {
 
@@ -37,7 +39,7 @@ class _DepartmentsState extends State<Departments> {
     return ListView.builder(
         itemCount: _departments.length,
         itemBuilder: (BuildContext context, int id) {
-          return _depUI('${_departments[id].deptName}', _getContent(id), colors[id]);
+          return _depUI('${_departments[id].deptName}', _getContent(id), colors[id%_departments.length]);
         });
   }
 
@@ -47,7 +49,6 @@ class _DepartmentsState extends State<Departments> {
         var phones = json.decode(_departments[id].facultyPhones);
         List<FacultyDetailsDM> _faclist = [];
         //print(phones[0]['name']);
-
 
         for (var p in phones) {
           FacultyDetailsDM f =
@@ -75,12 +76,42 @@ class _DepartmentsState extends State<Departments> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Text('Name'),
-          Text('$name'),
-          Text('Email'),
-          Text('$email'),
-          Text('Phone'),
-          Text('$phone'),
+          SizedBox(height: 10.0,),
+          Row(
+            children: <Widget>[
+              SizedBox(width: 10.0,),
+              Text('$name',style: _large,),
+            ],
+          ),
+          SizedBox(height: 10.0,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: 60.0, right: 60.0),
+                child: InkWell(
+                  onTap: () {
+                    launch("tel:+91 $phone");
+                  },
+                  child: Icon(
+                    Icons.phone,
+                    color: Colors.white,
+                    size: 30.0,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 60.0, right: 60.0),
+                child: InkWell(
+                  onTap: () {
+                    launch("mailto:$email?subject=Support Request&body=");
+                  },
+                  child: Icon(Icons.email, color: Colors.white, size: 30.0),
+                ),
+              )
+            ],
+          ),
+          Divider(color: Colors.white,)
         ],
       ),
     );
@@ -90,8 +121,11 @@ class _DepartmentsState extends State<Departments> {
     FoldingWidget myWidget = new FoldingWidget(title, content);
     myWidget.setCardBackgroundColor(color);
     myWidget.setTitleTextColor(Colors.white);
-
-    return myWidget;
+    myWidget.setCardElevation(7.0);
+    return Padding(
+      padding: EdgeInsets.only(top: 10.0,),
+      child: myWidget,
+    );
   }
 
   @override

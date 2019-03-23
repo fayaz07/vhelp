@@ -46,10 +46,10 @@ class _HomeState extends State<Home> {
       currentIndex: _screenToBeShown,
       items: [
         BottomNavigationBarItem(backgroundColor: Colors.blue,icon: Icon(Icons.home), title: Text('Home',textAlign: TextAlign.center,style: style)),
-        BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/governing_body.png')), title: Text('Governing body',textAlign: TextAlign.center,style: style)),
-        BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/department.png')), title: Text('Departments',textAlign: TextAlign.center,style: style)),
-        BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/administator.png')), title: Text('Administration',textAlign: TextAlign.center,style: style)),
-        BottomNavigationBarItem(icon: ImageIcon(AssetImage('assets/other_amenities.png')), title: Text('Other amenities',textAlign: TextAlign.center,style: style)),
+        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: ImageIcon(AssetImage('assets/governing_body.png')), title: Text('Governing body',textAlign: TextAlign.center,style: style)),
+        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: ImageIcon(AssetImage('assets/department.png')), title: Text('Departments',textAlign: TextAlign.center,style: style)),
+        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: ImageIcon(AssetImage('assets/administator.png')), title: Text('Administration',textAlign: TextAlign.center,style: style)),
+        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: ImageIcon(AssetImage('assets/other_amenities.png')), title: Text('Other amenities',textAlign: TextAlign.center,style: style)),
       ],
       fixedColor: Colors.blue,
     );

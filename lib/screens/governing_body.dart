@@ -35,7 +35,7 @@ class _GoverningBodyState extends State<GoverningBody> {
           return AnimatedContainer(
             duration: Duration(milliseconds: 500),
             child: Padding(
-              padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+              padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
               child: _getProfileModel(
                 _details[id].image,
                 _details[id].name,
@@ -94,7 +94,7 @@ class _GoverningBodyState extends State<GoverningBody> {
       child: Card(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0))),
-        elevation: 10.0,
+        elevation: 8.0,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
