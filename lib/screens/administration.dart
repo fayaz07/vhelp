@@ -62,7 +62,7 @@ class _AdminState extends State<Administration>{
   Widget _getProfileModel(
       String image, String name, String desc, String email, String phone) {
     Widget _bottom;
-    if (email.length == 0) {
+    if (phone.length == 0) {
       _bottom = Container();
     } else {
       _bottom = Container(
