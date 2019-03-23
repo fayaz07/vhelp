@@ -4,9 +4,9 @@ import 'package:vhelp/home.dart';
 
 void main(){
   runApp(
-    CupertinoApp(
+    MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: VHelpSplash(),
+      home: Home(),
     )
   );
 }
