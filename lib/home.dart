@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:vhelp/screens/about_us.dart';
 import 'package:vhelp/screens/departments.dart';
 import 'package:vhelp/screens/governing_body.dart';
+import 'package:vhelp/screens/other_amenities.dart';
 
 int _screenToBeShown = 0;
 
@@ -27,7 +28,7 @@ class _HomeState extends State<Home> {
       case 1: return GoverningBody();
       case 2: return Departments();
       case 3: return AboutUs();
-      case 4: return AboutUs();
+      case 4: return OtherAmenities();
 
     }
   }

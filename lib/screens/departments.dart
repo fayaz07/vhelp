@@ -4,24 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:vhelp/folding_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:vhelp/utils.dart';
 
 double _height, _width;
 
-var _small = TextStyle(fontSize: 14.0,color: Colors.white);
-var _large = TextStyle(fontSize: 20.0,color: Colors.white,fontWeight: FontWeight.w800);
-
+var _small = TextStyle(fontSize: 14.0, color: Colors.white);
+var _large =
+    TextStyle(fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.w800);
 
 var _departments = [
   DepartmentsDataModel(
-      deptName: 'CSE',
-      type: 'Branch',
-      facultyPhones:
-        '[{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"}]'),
+      deptName: 'Library', type: 'Library', desc: Data.libraryData),
+  DepartmentsDataModel(
+      deptName: 'Research and Development',
+      type: 'Library',
+      desc: Data.rNdData),
   DepartmentsDataModel(
       deptName: 'CSE',
       type: 'Branch',
       facultyPhones:
-        '[{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"}]')
+          '[{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"}]'),
+  DepartmentsDataModel(deptName: 'BME', type: 'Branch', facultyPhones: Data.bme)
 ];
 
 class Departments extends StatefulWidget {
@@ -34,12 +37,12 @@ class Departments extends StatefulWidget {
 var colors = Colors.accents;
 
 class _DepartmentsState extends State<Departments> {
-
   Widget _getBody() {
     return ListView.builder(
         itemCount: _departments.length,
         itemBuilder: (BuildContext context, int id) {
-          return _depUI('${_departments[id].deptName}', _getContent(id), colors[id%_departments.length]);
+          return _depUI('${_departments[id].deptName}', _getContent(id),
+              colors[id % _departments.length]);
         });
   }
 
@@ -60,39 +63,59 @@ class _DepartmentsState extends State<Departments> {
           constraints: BoxConstraints(maxHeight: _height * 4 / 10),
           child: ListView.builder(
               itemCount: _faclist.length,
-              itemBuilder: (BuildContext context,int id){
+              itemBuilder: (BuildContext context, int id) {
                 return Padding(
-                  padding: EdgeInsets.only(top: 3.0,bottom: 3.0),
-                  child: _getFacultyUI(_faclist[id].name, _faclist[id].email, _faclist[id].phone),
+                  padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
+                  child: _getFacultyUI(_faclist[id].name, _faclist[id].email,
+                      _faclist[id].phone),
                 );
-              }
-          ),
+              }),
         );
-    };
+      case 'Library':
+        return Container(
+          constraints: BoxConstraints(maxHeight: _height * 4 / 10),
+          child: SingleChildScrollView(
+              child: Text(
+            _departments[id].desc,
+            textAlign: TextAlign.justify,
+            style: TextStyle(color: Colors.white),
+          )),
+        );
+    }
+    ;
   }
 
-  Widget _getFacultyUI(String name,String email,String phone){
+  Widget _getFacultyUI(String name, String email, String phone) {
     return SizedBox(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          SizedBox(height: 10.0,),
+          SizedBox(
+            height: 10.0,
+          ),
           Row(
             children: <Widget>[
-              SizedBox(width: 10.0,),
-              Text('$name',style: _large,),
+              SizedBox(
+                width: 10.0,
+              ),
+              Text(
+                '$name',
+                style: _large,
+              ),
             ],
           ),
-          SizedBox(height: 10.0,),
+          SizedBox(
+            height: 10.0,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(left: 60.0, right: 60.0),
-                child: InkWell(
-                  onTap: () {
-                    launch("tel:+91 $phone");
-                  },
+              InkWell(
+                onTap: () {
+                  launch("tel:+91 $phone");
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(left: 60.0, right: 60.0),
                   child: Icon(
                     Icons.phone,
                     color: Colors.white,
@@ -100,18 +123,20 @@ class _DepartmentsState extends State<Departments> {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 60.0, right: 60.0),
-                child: InkWell(
-                  onTap: () {
-                    launch("mailto:$email?subject=Support Request&body=");
-                  },
+              InkWell(
+                onTap: () {
+                  launch("mailto:$email?subject=Support Request&body=");
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(left: 60.0, right: 60.0),
                   child: Icon(Icons.email, color: Colors.white, size: 30.0),
                 ),
               )
             ],
           ),
-          Divider(color: Colors.white,)
+          Divider(
+            color: Colors.white,
+          )
         ],
       ),
     );
@@ -123,7 +148,9 @@ class _DepartmentsState extends State<Departments> {
     myWidget.setTitleTextColor(Colors.white);
     myWidget.setCardElevation(7.0);
     return Padding(
-      padding: EdgeInsets.only(top: 10.0,),
+      padding: EdgeInsets.only(
+        top: 10.0,
+      ),
       child: myWidget,
     );
   }
@@ -139,9 +166,10 @@ class _DepartmentsState extends State<Departments> {
 }
 
 class DepartmentsDataModel {
-  String deptName, type, facultyPhones;
+  String deptName, type, facultyPhones, desc;
 
-  DepartmentsDataModel({this.deptName, this.type, this.facultyPhones});
+  DepartmentsDataModel(
+      {this.deptName, this.type, this.facultyPhones, this.desc});
 }
 
 class FacultyDetailsDM {
@@ -149,3 +177,10 @@ class FacultyDetailsDM {
 
   FacultyDetailsDM(this.name, this.email, this.phone);
 }
+
+/*
+
+
+
+
+ */
