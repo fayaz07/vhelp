@@ -10,6 +10,10 @@ var list = [
       desc: Data.ambulanceData,
       image: 'assets/ambulance.jpg'),
   OtherDataModel(name: "CLUBS", desc: Data.clubsData),
+  OtherDataModel(name: "Boating Club", desc: Data.boatClub),
+  OtherDataModel(name: "English Reader\'s club", desc: Data.erc),
+  OtherDataModel(name: "Media Club", desc: Data.media),
+  OtherDataModel(name: "Cultural Club", desc: Data.cultural)
 
 ];
 

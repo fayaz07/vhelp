@@ -44,6 +44,12 @@ class _FoldingWidgetState extends State<FoldingWidget> {
   Color _cardColor = Colors.white, _textColor = Colors.black;
   Widget content;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   var _icon = Icons.chevron_right;
   bool _showContent = false;
 
@@ -88,6 +94,7 @@ class _FoldingWidgetState extends State<FoldingWidget> {
     return InkWell(
         onTap: () {
           setState(() {
+
             if (_showContent) {
               _showContent = !_showContent;
               _icon = Icons.chevron_right;

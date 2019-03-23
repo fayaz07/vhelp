@@ -3,55 +3,39 @@ import 'package:flutter/cupertino.dart';
 import 'package:vhelp/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-var _details = [
-  GoverningBodyDataModel(
-      name: 'Dr. B V Raju',
-      image: 'assets/bvraju.jpg',
-      email: '',
-      phone: '',
-      description: 'Founder'),
-  GoverningBodyDataModel(
-      name: 'KV Vishnu Raju',
-      image: 'assets/kvvishnu.jpg',
-      email: '',
-      phone: '',
-      description: 'Chairman, Sri Vishnu Educational Society'),
-  GoverningBodyDataModel(
-      name: 'Sri Ravichandran Rajagopal',
-      image: 'assets/rv.jpg',
-      email: '',
-      phone: '',
-      description: 'Vice Chairman, Sri Vishnu Educational Society'),
-  GoverningBodyDataModel(
-      name: 'Sri K. Aditya Vissam',
-      image: 'assets/add.jpeg',
-      email: '',
-      phone: '',
-      description: 'Secretary, Sri Vishnu Educational Society'),
+double _height,_width;
 
-  GoverningBodyDataModel(
-      name: 'Dr. Y Krishna Reddy',
-      image: 'assets/principal.jpeg',
-      email: 'principal@bvrit.ac.in',
-      phone: '7337411184',
-      description: 'Dr. Y. Krishna Reddy, the Principal of B. V. Raju Instituteof Technology, Vishnupur, Narsapur, Medak District hasearlier worked as professor of Mechanical Engineeringat CBIT, Hyderabad.He did his graduation from JNTU, Anantapur(1976-81)and post-graduation from IIT Kharagpur (1981-83). Hepursed his doctoral and research work at IIT Kharagpuron full time basis for 3 years on lien from CBIT. He hadworked for two years in the US on software projectsHe has a passion for teaching and has learnt and taughtmany programming languages and CAD packages forMechanical Engineering students.'),
-  GoverningBodyDataModel(
-      name: 'Kaipa Srinivasa Reddy',
-      image: 'assets/dean.jpg',
-      email: 'srinivasareddy.kaipa@bvrit.ac.in',
-      phone: '8500255522 ',
-      description: 'Dean, BVRIT'),
+var _details = [
+  AdminDm(
+      name: 'Mr. M Kantha Rao',
+      phone: '9949433570',
+      desc: 'Deputy General Manager'),
+  AdminDm(
+      name: 'Mr. K S S Sp Raju',
+      phone: '9177882500',
+      desc: 'Accounts Officer'),
+  AdminDm(
+      name: 'Mrs. A Laxmi',
+      phone: '99848659090',
+      desc: 'Accounts Officer'),
+  AdminDm(
+      name: 'Mr. Shiva Shankar Reddy',
+      phone: '9494821012',
+      desc: 'Accountant'),
 ];
 
-class GoverningBody extends StatefulWidget {
+
+
+class Administration extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    return _GoverningBodyState();
+    return _AdminState();
   }
 }
 
-class _GoverningBodyState extends State<GoverningBody> {
-  double _height, _width;
+class _AdminState extends State<Administration>{
+
+
 
   Widget _getDetails() {
     return ListView.builder(
@@ -62,10 +46,10 @@ class _GoverningBodyState extends State<GoverningBody> {
             child: Padding(
               padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
               child: _getProfileModel(
-                _details[id].image,
+                '',
                 _details[id].name,
-                _details[id].description,
-                _details[id].email,
+                _details[id].desc,
+                '',
                 _details[id].phone,
               ),
             ),
@@ -128,7 +112,7 @@ class _GoverningBodyState extends State<GoverningBody> {
             ),
             CircleAvatar(
               radius: _height * 1 / 10,
-              backgroundImage: AssetImage(image),
+              backgroundImage: AssetImage('assets/admin.png'),
               backgroundColor: Colors.grey,
             ),
             SizedBox(
@@ -153,8 +137,8 @@ class _GoverningBodyState extends State<GoverningBody> {
             email.length != 0
                 ? Divider()
                 : SizedBox(
-                    height: 10.0,
-                  ),
+              height: 10.0,
+            ),
             _bottom
           ],
         ),
@@ -162,20 +146,21 @@ class _GoverningBodyState extends State<GoverningBody> {
     );
   }
 
+
   @override
   Widget build(BuildContext context) {
-    _height = MediaQuery.of(context).size.height;
     _width = MediaQuery.of(context).size.width;
+    _height= MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: _getDetails()
+      body: _getDetails(),
     );
   }
 }
 
-class GoverningBodyDataModel {
-  String name, description, image, email, phone;
+class AdminDm{
+  String name,phone,desc;
 
-  GoverningBodyDataModel(
-      {this.name, this.description, this.image, this.email, this.phone});
+  AdminDm({this.name, this.phone, this.desc});
+
 }

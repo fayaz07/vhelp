@@ -23,8 +23,17 @@ var _departments = [
       deptName: 'CSE',
       type: 'Branch',
       facultyPhones:
-          '[{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "Kaipa Srinivas Reddy","phone": "9502039079","email": "fayazfz07@gmail.com"},{"name": "fayaz","phone": "9502039079","email": "fayazfz07@gmail.com"}]'),
-  DepartmentsDataModel(deptName: 'BME', type: 'Branch', facultyPhones: Data.bme)
+          '[{"name": "Faculty","phone": "9502039079","email": "fayazfz07@gmail.com"}]'),
+  DepartmentsDataModel(deptName: 'BME', type: 'Branch', facultyPhones: Data.bme),
+  DepartmentsDataModel(deptName: 'MECHANICAL', type: 'Branch', facultyPhones: Data.mech),
+  DepartmentsDataModel(deptName: 'BS & H', type: 'Branch', facultyPhones: Data.bsh),
+  DepartmentsDataModel(deptName: 'MBA', type: 'Branch', facultyPhones: Data.mba),
+  DepartmentsDataModel(deptName: 'BS & H', type: 'Branch', facultyPhones: Data.bsh),
+  DepartmentsDataModel(deptName: 'CHE', type: 'Branch', facultyPhones: Data.che),
+  DepartmentsDataModel(deptName: 'ECE', type: 'Branch', facultyPhones: Data.ece),
+  DepartmentsDataModel(deptName: 'EEE', type: 'Branch', facultyPhones: Data.eee),
+  DepartmentsDataModel(deptName: 'IT', type: 'Branch', facultyPhones: Data.it),
+  DepartmentsDataModel(deptName: 'PHE', type: 'Branch', facultyPhones: Data.phe)
 ];
 
 class Departments extends StatefulWidget {
@@ -58,7 +67,7 @@ class _DepartmentsState extends State<Departments> {
               new FacultyDetailsDM(p['name'], p['email'], p['phone']);
           _faclist.add(f);
         }
-        print(_faclist.length);
+        //print(_faclist.length);
         return Container(
           constraints: BoxConstraints(maxHeight: _height * 4 / 10),
           child: ListView.builder(
@@ -161,6 +170,7 @@ class _DepartmentsState extends State<Departments> {
     _width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: _getBody(),
+      bottomNavigationBar: SizedBox(height: 30.0,),
     );
   }
 }
@@ -178,9 +188,3 @@ class FacultyDetailsDM {
   FacultyDetailsDM(this.name, this.email, this.phone);
 }
 
-/*
-
-
-
-
- */
