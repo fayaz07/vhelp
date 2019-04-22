@@ -16,8 +16,7 @@ class _AboutUsState extends State<AboutUs> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: SizedBox(
-            child: Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset('assets/bvrit.png'),
@@ -44,9 +43,8 @@ class _AboutUsState extends State<AboutUs> {
             Wrap(
               direction: Axis.horizontal,
               children: <Widget>[
-                Expanded(
-                  child: Text(Data.rowText1, textAlign: TextAlign.center, style: style),
-                ),
+                Text(Data.rowText1,
+                      textAlign: TextAlign.center, style: style),
                 Container(
                   height: 30.0,
                   width: 1.0,
@@ -59,7 +57,9 @@ class _AboutUsState extends State<AboutUs> {
                   width: 1.0,
                   color: Colors.white30,
                   margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-                ),Expanded(child: Text(Data.rowText3, textAlign: TextAlign.center, style: style)),
+                ),
+                Text(Data.rowText3,
+                        textAlign: TextAlign.center, style: style),
                 Container(
                   height: 30.0,
                   width: 1.0,
@@ -71,10 +71,14 @@ class _AboutUsState extends State<AboutUs> {
             ),
             Column(
               children: <Widget>[
-                SizedBox(height: 20.0,),
+                SizedBox(
+                  height: 20.0,
+                ),
                 Row(
                   children: <Widget>[
-                    SizedBox(width: 20.0,),
+                    SizedBox(
+                      width: 20.0,
+                    ),
                     Text(
                       Data.coursesOfferedTitle1,
                       style: Styles.heading,
@@ -85,12 +89,14 @@ class _AboutUsState extends State<AboutUs> {
                 Divider(),
                 Row(
                   children: <Widget>[
-                    SizedBox(width: 20.0,),
-                    Expanded(child: Text(
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Text(
                       Data.coursesOffered1,
                       style: Styles.description,
                       textAlign: TextAlign.left,
-                    ),),
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -98,19 +104,25 @@ class _AboutUsState extends State<AboutUs> {
                 ),
                 Row(
                   children: <Widget>[
-                    SizedBox(width: 20.0,),
-                    Expanded(child: Text(
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    Text(
                       Data.coursesOfferedTitle2,
                       style: Styles.heading,
                       textAlign: TextAlign.left,
-                    ),              ),      
-                    SizedBox(width: 10.0,),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
                   ],
                 ),
                 Divider(),
                 Row(
                   children: <Widget>[
-                    SizedBox(width: 20.0,),
+                    SizedBox(
+                      width: 20.0,
+                    ),
                     Text(
                       Data.coursesOffred2,
                       style: Styles.description,
@@ -124,8 +136,8 @@ class _AboutUsState extends State<AboutUs> {
               ],
             ),
           ],
-        )),
-      ),
+        )
+      )
     );
   }
 }
