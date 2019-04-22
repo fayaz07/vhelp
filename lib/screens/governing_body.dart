@@ -91,7 +91,8 @@ class _GoverningBodyState extends State<GoverningBody> {
               padding: EdgeInsets.only(left: 30.0, right: 30.0),
               child: InkWell(
                 onTap: () {
-                  launch("tel:+91 $phone");
+                  print("tel:+91$phone");
+                  launch("tel:91$phone");
                 },
                 child: Icon(
                   Icons.phone,
@@ -103,7 +104,8 @@ class _GoverningBodyState extends State<GoverningBody> {
             Padding(
               padding: EdgeInsets.only(left: 30.0, right: 30.0),
               child: InkWell(
-                onTap: () {
+                onTap: () async {
+              
                   launch("mailto:$email?subject=Support Request&body=");
                 },
                 child: Icon(Icons.email, color: Colors.blue, size: 30.0),

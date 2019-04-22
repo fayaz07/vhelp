@@ -110,14 +110,14 @@ class _AdminState extends State<Administration>{
             SizedBox(
               height: 10.0,
             ),
-            CircleAvatar(
+           /* CircleAvatar(
               radius: _height * 1 / 10,
               backgroundImage: AssetImage('assets/admin.png'),
               backgroundColor: Colors.grey,
             ),
             SizedBox(
               height: 10.0,
-            ),
+            ),*/
             Text(
               name,
               textAlign: TextAlign.center,

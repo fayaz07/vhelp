@@ -23,7 +23,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     animController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: 700));
+        vsync: this, duration: Duration(milliseconds: 500));
     animation = Tween(begin: 0.0, end: 1.0).animate(animController);
     animController.forward();
   }
