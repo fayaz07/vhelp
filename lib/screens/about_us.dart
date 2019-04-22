@@ -44,7 +44,9 @@ class _AboutUsState extends State<AboutUs> {
             Wrap(
               direction: Axis.horizontal,
               children: <Widget>[
-                Text(Data.rowText1, textAlign: TextAlign.center, style: style),
+                Expanded(
+                  child: Text(Data.rowText1, textAlign: TextAlign.center, style: style),
+                ),
                 Container(
                   height: 30.0,
                   width: 1.0,
@@ -57,8 +59,7 @@ class _AboutUsState extends State<AboutUs> {
                   width: 1.0,
                   color: Colors.white30,
                   margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-                ),
-                Text(Data.rowText3, textAlign: TextAlign.center, style: style),
+                ),Expanded(child: Text(Data.rowText3, textAlign: TextAlign.center, style: style)),
                 Container(
                   height: 30.0,
                   width: 1.0,
@@ -85,25 +86,25 @@ class _AboutUsState extends State<AboutUs> {
                 Row(
                   children: <Widget>[
                     SizedBox(width: 20.0,),
-                    Text(
+                    Expanded(child: Text(
                       Data.coursesOffered1,
                       style: Styles.description,
                       textAlign: TextAlign.left,
-                    ),
+                    ),),
                   ],
                 ),
-
                 SizedBox(
                   height: 30.0,
                 ),
                 Row(
                   children: <Widget>[
                     SizedBox(width: 20.0,),
-                    Text(
+                    Expanded(child: Text(
                       Data.coursesOfferedTitle2,
                       style: Styles.heading,
                       textAlign: TextAlign.left,
-                    )
+                    ),              ),      
+                    SizedBox(width: 10.0,),
                   ],
                 ),
                 Divider(),
@@ -118,8 +119,7 @@ class _AboutUsState extends State<AboutUs> {
                   ],
                 ),
                 SizedBox(
-                  height: 30.0
-                  ,
+                  height: 30.0,
                 )
               ],
             ),

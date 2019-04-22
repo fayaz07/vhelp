@@ -88,7 +88,7 @@ class _GoverningBodyState extends State<GoverningBody> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 60.0, right: 60.0),
+              padding: EdgeInsets.only(left: 30.0, right: 30.0),
               child: InkWell(
                 onTap: () {
                   launch("tel:+91 $phone");
@@ -101,7 +101,7 @@ class _GoverningBodyState extends State<GoverningBody> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 60.0, right: 60.0),
+              padding: EdgeInsets.only(left: 30.0, right: 30.0),
               child: InkWell(
                 onTap: () {
                   launch("mailto:$email?subject=Support Request&body=");
