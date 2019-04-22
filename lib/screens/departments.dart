@@ -43,14 +43,23 @@ class Departments extends StatefulWidget {
   }
 }
 
-var colors = Colors.accents;
+var colors = [Color(0xffec407a),Color(0xffef5350),Color(0xffab47bc),Color(0xff7e57c2)
+            ,Color(0xff5c6bc0),Color(0xff42a5f5),Color(0xff26c6da),Color(0xff26a69a)
+            ,Color(0xffffa726),
+Color(0xffec407a),Color(0xffef5350),Color(0xffab47bc),Color(0xff7e57c2)
+,Color(0xff5c6bc0),Color(0xff42a5f5),Color(0xff26c6da),Color(0xff26a69a)
+,Color(0xffffa726)];
+
 
 class _DepartmentsState extends State<Departments> {
   Widget _getBody() {
     return ListView.builder(
+       scrollDirection: Axis.vertical,
         itemCount: _departments.length,
         itemBuilder: (BuildContext context, int id) {
-          return _depUI('${_departments[id].deptName}', _getContent(id),
+          return _depUI(
+              '${_departments[id].deptName}',
+              _getContent(id),
               colors[id % _departments.length]);
         });
   }
@@ -70,28 +79,56 @@ class _DepartmentsState extends State<Departments> {
         //print(_faclist.length);
         return Container(
           constraints: BoxConstraints(maxHeight: _height * 4 / 10),
-          child: ListView.builder(
-              itemCount: _faclist.length,
-              itemBuilder: (BuildContext context, int id) {
-                return Padding(
-                  padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
-                  child: _getFacultyUI(_faclist[id].name, _faclist[id].email,
-                      _faclist[id].phone),
-                );
-              }),
+//          child: ListView.builder(
+//              itemCount: _faclist.length,
+//              itemBuilder: (BuildContext context, int id) {
+//                return Padding(
+//                  padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
+//                  child: _getFacultyUI(_faclist[id].name, _faclist[id].email,
+//                      _faclist[id].phone),
+//                );
+//              }),
+        //  constraints: BoxConstraints(maxHeight: _height * 4 / 10),
+          child: SingleChildScrollView(
+          child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: buildContacts(_faclist)),
+        ),
+//            child: NestedScrollView(
+//              headerSliverBuilder: (BuildContext ctx,bool value){
+//                return buildContacts(_faclist);
+//              },
+//              body: Column(
+//                    mainAxisSize: MainAxisSize.min,
+//                    children: buildContacts(_faclist)),
+//            ),
         );
       case 'Library':
         return Container(
-          constraints: BoxConstraints(maxHeight: _height * 4 / 10),
+         // constraints: BoxConstraints(maxHeight: _height * 4 / 10),
           child: SingleChildScrollView(
               child: Text(
             _departments[id].desc,
             textAlign: TextAlign.justify,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white,fontSize: 18.0),
           )),
         );
+
+      default: return Container();
     }
-    ;
+  }
+
+  List<Widget> buildContacts(List<FacultyDetailsDM> facList){
+    List<Widget> _listOfContacts = [];
+
+    for(int i=0;i<facList.length;i++){
+      _listOfContacts.add(Padding(
+        padding: EdgeInsets.only(top: 3.0, bottom: 3.0),
+        child: _getFacultyUI(facList[i].name, facList[i].email,
+            facList[i].phone),
+      ));
+    }
+    return _listOfContacts;
   }
 
   Widget _getFacultyUI(String name, String email, String phone) {
@@ -107,24 +144,18 @@ class _DepartmentsState extends State<Departments> {
               SizedBox(
                 width: 10.0,
               ),
-              Text(
-                '$name',
-                style: _large,
+              Expanded(
+                child: Text(
+                  '$name',
+                  style: _large,
+                ),
               ),
-            ],
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
               InkWell(
                 onTap: () {
                   launch("tel:+91 $phone");
                 },
                 child: Padding(
-                  padding: EdgeInsets.only(left: 60.0, right: 60.0),
+                  padding: EdgeInsets.only(left: 5.0,right: 5.0),
                   child: Icon(
                     Icons.phone,
                     color: Colors.white,
@@ -137,12 +168,42 @@ class _DepartmentsState extends State<Departments> {
                   launch("mailto:$email?subject=Support Request&body=");
                 },
                 child: Padding(
-                  padding: EdgeInsets.only(left: 60.0, right: 60.0),
+                  padding: EdgeInsets.only(left: 5.0,right: 5.0),
                   child: Icon(Icons.email, color: Colors.white, size: 30.0),
                 ),
               )
             ],
           ),
+//          SizedBox(
+//            height: 10.0,
+//          ),
+//          Row(
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            children: <Widget>[
+//              InkWell(
+//                onTap: () {
+//                  launch("tel:+91 $phone");
+//                },
+//                child: Padding(
+//                  padding: EdgeInsets.only(left: 60.0, right: 60.0),
+//                  child: Icon(
+//                    Icons.phone,
+//                    color: Colors.white,
+//                    size: 30.0,
+//                  ),
+//                ),
+//              ),
+//              InkWell(
+//                onTap: () {
+//                  launch("mailto:$email?subject=Support Request&body=");
+//                },
+//                child: Padding(
+//                  padding: EdgeInsets.only(left: 60.0, right: 60.0),
+//                  child: Icon(Icons.email, color: Colors.white, size: 30.0),
+//                ),
+//              )
+//            ],
+//          ),
           Divider(
             color: Colors.white,
           )
@@ -152,16 +213,31 @@ class _DepartmentsState extends State<Departments> {
   }
 
   Widget _depUI(String title, Widget content, Color color) {
-    FoldingWidget myWidget = new FoldingWidget(title, content);
+    FoldingWidget myWidget = new FoldingWidget(
+        title,
+        content);
     myWidget.setCardBackgroundColor(color);
     myWidget.setTitleTextColor(Colors.white);
     myWidget.setCardElevation(7.0);
     return Padding(
-      padding: EdgeInsets.only(
-        top: 10.0,
+      key: Key(title),
+      padding: EdgeInsets.only(left: 15.0,right: 15.0,top: 5.0),
+      child: Card(
+        elevation: 8.0,
+        color: color,
+        child: ExpansionTile(
+//        backgroundColor:,
+            title: Text(title,style: TextStyle(color: Colors.white,fontSize: 18.0,fontWeight: FontWeight.w700),),
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(10.0),
+                child: content,
+              )
+            ],
+        ),
       ),
-      child: myWidget,
     );
+
   }
 
   @override
@@ -170,7 +246,6 @@ class _DepartmentsState extends State<Departments> {
     _width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: _getBody(),
-      bottomNavigationBar: SizedBox(height: 30.0,),
     );
   }
 }

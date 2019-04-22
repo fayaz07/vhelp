@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   url_launcher: ^5.0.2
 #  folding_widget: ^0.0.1
+  animated_splash: ^0.0.1
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +64,7 @@ flutter:
     - assets/admin.png
     - assets/add.jpeg
     - assets/dean.jpg
+    - assets/principal_photo.png
 
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg

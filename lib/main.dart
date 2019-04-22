@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:vhelp/home.dart';
+import 'package:animated_splash/animated_splash.dart';
 
 void main(){
-  runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: VHelpSplash(),
-    )
-  );
+//  runApp(
+//    MaterialApp(
+//      debugShowCheckedModeBanner: false,
+//      home: VHelpSplash(),
+//    )
+//  );
+
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: SplashScreen(
+        imagePath: 'assets/vishnu.png',
+        home: Home(),
+        duringSplash: (){},
+        duration: 2500),
+  ));
+
 }
 
 // ignore: must_be_immutable

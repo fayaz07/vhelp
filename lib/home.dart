@@ -15,7 +15,19 @@ class Home extends StatefulWidget {
   }
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  Animation animation;
+  AnimationController animController;
+
+  @override
+  void initState() {
+    super.initState();
+    animController = AnimationController(
+        vsync: this, duration: Duration(milliseconds: 700));
+    animation = Tween(begin: 0.0, end: 1.0).animate(animController);
+    animController.forward();
+  }
+
   Widget _getAppBar() {
     return AppBar(
       title: Text('vHelp'),
@@ -23,14 +35,21 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _getHome() {
-    switch(_screenToBeShown){
-      case 0: return AboutUs();
-      case 1: return GoverningBody();
-      case 2: return Departments();
-      case 3: return Administration();
-      case 4: return OtherAmenities();
-
+  Widget _getHome(int sc) {
+   // print(animation.value);
+    switch (sc) {
+      case 0:
+        return AboutUs();
+      case 1:
+        return GoverningBody();
+      case 2:
+        return Departments();
+      case 3:
+        return Administration();
+      case 4:
+        return OtherAmenities();
+      default:
+        return Container();
     }
   }
 
@@ -40,18 +59,41 @@ class _HomeState extends State<Home> {
       onTap: (int i) {
         setState(() {
           _screenToBeShown = i;
+          animController.reset();
+          animController.forward();
+         // print(animation.value);
         });
-        print('$i tapped');
+
+//        print('$i tapped');
       },
       iconSize: 25.0,
       type: BottomNavigationBarType.shifting,
       currentIndex: _screenToBeShown,
       items: [
-        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: Icon(Icons.home), title: Text('Home',textAlign: TextAlign.center,style: style)),
-        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: ImageIcon(AssetImage('assets/governing_body.png')), title: Text('Governing body',textAlign: TextAlign.center,style: style)),
-        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: ImageIcon(AssetImage('assets/department.png')), title: Text('Departments',textAlign: TextAlign.center,style: style)),
-        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: ImageIcon(AssetImage('assets/administator.png')), title: Text('Administration',textAlign: TextAlign.center,style: style)),
-        BottomNavigationBarItem(backgroundColor: Colors.blue,icon: ImageIcon(AssetImage('assets/other_amenities.png')), title: Text('Other amenities',textAlign: TextAlign.center,style: style)),
+        BottomNavigationBarItem(
+            backgroundColor: Colors.blue,
+            icon: Icon(Icons.home),
+            title: Text('Home', textAlign: TextAlign.center, style: style)),
+        BottomNavigationBarItem(
+            backgroundColor: Colors.blue,
+            icon: ImageIcon(AssetImage('assets/governing_body.png')),
+            title: Text('Governing body',
+                textAlign: TextAlign.center, style: style)),
+        BottomNavigationBarItem(
+            backgroundColor: Colors.blue,
+            icon: ImageIcon(AssetImage('assets/department.png')),
+            title:
+                Text('Departments', textAlign: TextAlign.center, style: style)),
+        BottomNavigationBarItem(
+            backgroundColor: Colors.blue,
+            icon: ImageIcon(AssetImage('assets/administator.png')),
+            title: Text('Administration',
+                textAlign: TextAlign.center, style: style)),
+        BottomNavigationBarItem(
+            backgroundColor: Colors.blue,
+            icon: ImageIcon(AssetImage('assets/other_amenities.png')),
+            title: Text('Other amenities',
+                textAlign: TextAlign.center, style: style)),
       ],
       fixedColor: Colors.blue,
     );
@@ -61,7 +103,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _getAppBar(),
-      body: _getHome(),
+      body: AnimatedBuilder(
+          animation: animController,
+          builder: (BuildContext ctx, Widget widget) {
+            return Opacity(
+              opacity: animation.value,
+              child: _getHome(_screenToBeShown),
+            );
+          }),
       bottomNavigationBar: _getBottomNavBar(),
     );
   }

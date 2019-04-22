@@ -41,7 +41,11 @@ class _OtherAmenitiesState extends State<OtherAmenities> {
         Text(
           list[id].name,
           style: Styles.pictureHeading,
-        ),Row(
+        ),
+        SizedBox(
+          height: 10.0,
+        ),
+        Row(
             children: <Widget>[
               SizedBox(
                 width: 10.0,

@@ -31,7 +31,7 @@ var _details = [
 
   GoverningBodyDataModel(
       name: 'Dr. Y Krishna Reddy',
-      image: 'assets/principal.jpeg',
+      image: 'assets/principal_photo.png',
       email: 'principal@bvrit.ac.in',
       phone: '7337411184',
       description: 'Dr. Y. Krishna Reddy, the Principal of B. V. Raju Instituteof Technology, Vishnupur, Narsapur, Medak District hasearlier worked as professor of Mechanical Engineeringat CBIT, Hyderabad.He did his graduation from JNTU, Anantapur(1976-81)and post-graduation from IIT Kharagpur (1981-83). Hepursed his doctoral and research work at IIT Kharagpuron full time basis for 3 years on lien from CBIT. He hadworked for two years in the US on software projectsHe has a passion for teaching and has learnt and taughtmany programming languages and CAD packages forMechanical Engineering students.'),
