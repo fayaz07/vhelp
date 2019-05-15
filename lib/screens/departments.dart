@@ -22,8 +22,7 @@ var _departments = [
   DepartmentsDataModel(
       deptName: 'CSE',
       type: 'Branch',
-      facultyPhones:
-          '[{"name": "Faculty","phone": "9502039079","email": "fayazfz07@gmail.com"}]'),
+      facultyPhones: Data.cse),
   DepartmentsDataModel(deptName: 'BME', type: 'Branch', facultyPhones: Data.bme),
   DepartmentsDataModel(deptName: 'MECHANICAL', type: 'Branch', facultyPhones: Data.mech),
   DepartmentsDataModel(deptName: 'BS & H', type: 'Branch', facultyPhones: Data.bsh),

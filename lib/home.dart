@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:vhelp/custom_navbar.dart';
 import 'package:vhelp/screens/about_us.dart';
 import 'package:vhelp/screens/administration.dart';
 import 'package:vhelp/screens/departments.dart';
@@ -55,6 +56,30 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   Widget _getBottomNavBar() {
     var style = TextStyle(fontSize: 12.0);
+    /*return CustomNavBar(
+      unSelectedColor: Colors.grey,
+      selectedIndex: 0,
+      selectedColor: Colors.blue,
+      iconSize: 24.0,
+      onChanged: (int i){
+        setState(() {
+          _screenToBeShown = i;
+          animController.reset();
+          animController.forward();
+          // print(animation.value);
+        });
+      },
+      items: [
+        CustomNavBarItem(Icons.home, 'Home'),
+        CustomNavBarItem(Icons.home, 'Governing Body'),
+        CustomNavBarItem(Icons.home, 'Departments'),
+        CustomNavBarItem(Icons.home, 'Administration'),
+        CustomNavBarItem(Icons.home, 'Other amenities'),
+      ],
+    );
+*/
+
+
     return BottomNavigationBar(
       onTap: (int i) {
         setState(() {
@@ -67,7 +92,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 //        print('$i tapped');
       },
       iconSize: 25.0,
-      type: BottomNavigationBarType.shifting,
+      type: BottomNavigationBarType.fixed,
       currentIndex: _screenToBeShown,
       items: [
         BottomNavigationBarItem(
