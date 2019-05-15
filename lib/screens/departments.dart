@@ -72,8 +72,9 @@ class _DepartmentsState extends State<Departments> {
 
         for (var p in phones) {
           FacultyDetailsDM f =
-              new FacultyDetailsDM(p['name'], p['email'], p['phone']);
+              new FacultyDetailsDM(name: p['name'],email: p['email'],phone: p['phone']);
           _faclist.add(f);
+          //print(f.email);
         }
         //print(_faclist.length);
         return Container(
@@ -126,6 +127,7 @@ class _DepartmentsState extends State<Departments> {
         child: _getFacultyUI(facList[i].name, facList[i].email,
             facList[i].phone),
       ));
+      //print('building contacts: ${facList[i].email}');
     }
     return _listOfContacts;
   }
@@ -151,7 +153,8 @@ class _DepartmentsState extends State<Departments> {
               ),
               InkWell(
                 onTap: () {
-                  launch("tel:+91 $phone");
+                  launch("tel:+91${phone.substring(0,5)}-${phone.substring(5,10)}");
+                  print('call "tel:+91${phone.substring(0,5)}-${phone.substring(5,10)}"');
                 },
                 child: Padding(
                   padding: EdgeInsets.only(left: 5.0,right: 5.0),
@@ -164,7 +167,11 @@ class _DepartmentsState extends State<Departments> {
               ),
               InkWell(
                 onTap: () {
-                  launch("mailto:$email?subject=Support Request&body=");
+                  launch("mailto:$email");
+                  print("mailto:$email");
+                  canLaunch("mailto:$email").then((value){
+                    print(value);
+                  });
                 },
                 child: Padding(
                   padding: EdgeInsets.only(left: 5.0,right: 5.0),
@@ -259,6 +266,6 @@ class DepartmentsDataModel {
 class FacultyDetailsDM {
   String name, email, phone;
 
-  FacultyDetailsDM(this.name, this.email, this.phone);
+  FacultyDetailsDM({this.name, this.email, this.phone});
 }
 

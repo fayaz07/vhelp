@@ -75,7 +75,7 @@ class _AdminState extends State<Administration>{
               padding: EdgeInsets.only(left: 30.0, right: 30.0),
               child: InkWell(
                 onTap: () {
-                  launch("tel:+91 $phone");
+                  launch("tel:+91${phone.substring(0,5)}-${phone.substring(5,10)}");
                 },
                 child: Icon(
                   Icons.phone,
@@ -88,7 +88,7 @@ class _AdminState extends State<Administration>{
               padding: EdgeInsets.only(left: 30.0, right: 30.0),
               child: InkWell(
                 onTap: () {
-                  launch("mailto:$email?subject=Support Request&body=");
+                  launch("mailto:$email");
                 },
                 child: Icon(Icons.email, color: Colors.blue, size: 30.0),
               ),

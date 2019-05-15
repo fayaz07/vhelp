@@ -39,7 +39,7 @@ var _details = [
       name: 'Kaipa Srinivasa Reddy',
       image: 'assets/dean.jpg',
       email: 'srinivasareddy.kaipa@bvrit.ac.in',
-      phone: '8500255522 ',
+      phone: '8500255522',
       description: 'Dean, BVRIT'),
 ];
 
@@ -91,8 +91,13 @@ class _GoverningBodyState extends State<GoverningBody> {
               padding: EdgeInsets.only(left: 30.0, right: 30.0),
               child: InkWell(
                 onTap: () {
-                  print("tel:+91$phone");
-                  launch("tel:91$phone");
+                  canLaunch("tel:+91${phone.substring(0,5)}-${phone.substring(5,10)}").then((value){
+                    print(value);
+                  });
+                  
+                  print("tel:+91${phone.substring(0,5)}-${phone.substring(5,10)}");
+                  launch("tel:+91${phone.substring(0,5)}-${phone.substring(5,10)}");
+                  //tel
                 },
                 child: Icon(
                   Icons.phone,
@@ -105,8 +110,10 @@ class _GoverningBodyState extends State<GoverningBody> {
               padding: EdgeInsets.only(left: 30.0, right: 30.0),
               child: InkWell(
                 onTap: () async {
-              
-                  launch("mailto:$email?subject=Support Request&body=");
+              canLaunch("mailto:$email").then((value){
+                    print(value);
+                  });
+                  launch("mailto:$email");
                 },
                 child: Icon(Icons.email, color: Colors.blue, size: 30.0),
               ),
